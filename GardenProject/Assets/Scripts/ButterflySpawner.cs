@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButterflySpawner : MonoBehaviour
 {
@@ -17,6 +18,15 @@ public class ButterflySpawner : MonoBehaviour
     public int CurrentNumberOfButterflies = 0;
     private float SpawningTimer = 0.0f;
     private EditorPath[] Array;
+
+    private void Awake()
+    {
+        if (DataCollector.Instance != null)
+        {
+            //find the steamvr eye and assign it to data collector
+            DataCollector.Instance.user = FindObjectOfType<SteamVR_Camera>().gameObject;
+        }
+    }
 
     private void Start()
     {
@@ -54,6 +64,12 @@ public class ButterflySpawner : MonoBehaviour
         Path.PathToFollow = Array[RandomNumber].GetComponent<EditorPath>();
     }
 
+    private void Restart()
+    {
+        SceneManager.LoadScene("StartScene");
+        Destroy(DataCollector.Instance.gameObject);
+    }
+
     private void Update()
     {
         if(CurrentNumberOfButterflies < TotalNumberOfButterflies)
@@ -64,6 +80,12 @@ public class ButterflySpawner : MonoBehaviour
                 Spawn();
                 SpawningTimer = 0.0f;
             }
+        }
+
+        // Restart from start scene
+        if (Input.GetKey(KeyCode.R))
+        {
+            Restart();
         }
     }
 }
