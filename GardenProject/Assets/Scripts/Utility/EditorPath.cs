@@ -1,5 +1,15 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿//--------------------------------------------------------------------------------
+/*
+ * This Script is used for visual feedback of drawing path(Developer)
+ * 
+ * Used in Main Scene, attached to Empty GameObject "FlyingPath_X", with X being the number of the path.
+ * FlyingPath_X should contain multiple Empty GameObject(Which serves as point for Butterfly to fly towards)
+ * And should be AllPaths found in Hierarchy.
+ */
+//--------------------------------------------------------------------------------
+
+using UnityEngine;  // Default Unity Script (MonoBehaviour, Tooltip, HideInInspector, Color, Transform, Gizmos, GetComponentsInChildren, Vector3)
+using System.Collections.Generic; // For List<>
 
 public class EditorPath : MonoBehaviour
 {

@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿//--------------------------------------------------------------------------------
+/*
+ * This Script is used for Butterflies to fly while following Path given when spawn.
+ * 
+ * Used in Main Scene, it's already attached to Butterfly Prefab in Prefabs folder under Project Assets.
+ */
+//--------------------------------------------------------------------------------
+
+using UnityEngine;  // Default Unity Script (MonoBehaviour, GameObject, Tooltip, HideInInspector, Time, Destroy, Vector3, Trnasform, Quaternion)
 
 public class FlyOnPath : MonoBehaviour
 {
@@ -16,17 +24,21 @@ public class FlyOnPath : MonoBehaviour
     private float FlightTimer = 0.0f;
     ButterflySpawner spawner;
 
+    // Runs at the start of first frame
     private void Start()
     {
         spawner = GameObject.Find("ButterflySpawner").GetComponent<ButterflySpawner>();
     }
 
+    // Update is called once per frame
     private void Update ()
     {
-        // Kill Butterfly when its timer is up
         FlightTimer += Time.deltaTime * Speed;
+
+        // Kill Butterfly when its timer is up
         if(FlightTimer >= FlightTime)
         {
+            // Kill Butterfly
             Destroy(gameObject);
             spawner.CurrentNumberOfButterflies--;
         }
